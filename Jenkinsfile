@@ -1,6 +1,6 @@
 pipeline{
  environment {
- registry = "victorialloyd/vat-calculator-demo"
+ registry = "nigelabel/vat-calculator-demo"
         registryCredentials = "dockerhub_id"
         dockerImage = ""
     }
@@ -9,7 +9,7 @@ pipeline{
             stage('Checkout Code') {
                 steps {
                 // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/QA-Instructor/lbg-pipeline-complete-1.git'
+                git branch: 'main', url: 'https://github.com/nigelabel/lbg-pipeline-complete-1'
                 }
             }
             stage('Install Dependencies') {
@@ -72,7 +72,7 @@ pipeline{
                     script {
                         sshPublisher(publishers: [sshPublisherDesc(configName: 'targetDeploymentServer', 
                         transfers: [sshTransfer(cleanRemote: false, excludes: '', 
-                        execCommand: 'docker pull victorialloyd/vat-calculator-demo:latest', 
+                        execCommand: 'docker pull nigelabel/vat-calculator-demo:latest', 
                         execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, 
                         patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
                         sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, 
@@ -85,7 +85,7 @@ pipeline{
                     script {
                         sshPublisher(publishers: [sshPublisherDesc(configName: 'targetDeploymentServer', 
                         transfers: [sshTransfer(cleanRemote: false, excludes: '', 
-                        execCommand: 'docker run --name deployed-vat-calc -d -p 8000:80 victorialloyd/vat-calculator-demo:latest', 
+                        execCommand: 'docker run --name deployed-vat-calc -d -p 8000:80 nigelabel/vat-calculator-demo:latest', 
                         execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, 
                         patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', 
                         sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, 
